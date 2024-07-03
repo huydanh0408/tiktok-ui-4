@@ -1,12 +1,16 @@
+import classNames from 'classnames/bind';
 import { Header, Sidebar } from './';
+
+import style from './CreatorCenter.module.scss';
+const cx = classNames.bind(style);
 
 function CreatorCenter({ children }) {
     return (
-        <div>
+        <div className={cx('wrapper')}>
             <Header />
-            <div className="container">
+            <div className={cx('container')}>
                 <Sidebar />
-                {children}
+                <div className={cx('content')}>{children}</div>
             </div>
         </div>
     );
