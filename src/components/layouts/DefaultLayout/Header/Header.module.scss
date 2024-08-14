@@ -1,5 +1,10 @@
 .wrapper {
-    height: var(--default-layout-header-height);
+    --search-height: 46px;
+    --search-border-radius: calc(var(--search-height) * 2);
+    --search-button-width: 52px;
+    --search-top-spacer: 9px;
+
+    height: var(--default-layout-header-height, 60px);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
     width: 100%;
     display: flex;
@@ -16,4 +21,88 @@
     align-items: center;
     padding-right: 24px;
     padding-left: 16px;
+}
+.search {
+    position: relative;
+    display: flex;
+    width: 500px;
+    height: var(--search-height);
+    align-items: center;
+    background: rgba(22, 24, 35, 0.06);
+    padding-left: 16px;
+    border-radius: var(--search-border-radius);
+    border: 1px solid transparent;
+    overflow: hidden;
+
+    input {
+        flex: 1;
+        background-color: transparent;
+        font-size: 1.6rem;
+        line-height: 2.1rem;
+        caret-color: var(--primary);
+        border: none;
+        outline: none;
+    }
+
+    input:hover ~ .search-btn {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+
+    input:hover ~ .search-btn > svg {
+        fill: var(--text-color);
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn > svg {
+        fill: var(--text-color);
+    }
+
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: (var(--search-button-width));
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+}
+.clear,
+.loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: var(--search-button-width);
+    font-size: 1.6rem;
+    padding: 0 16px;
+}
+.search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--search-button-width);
+    height: 100%;
+    width: var(--search-button-width);
+    background-color: transparent;
+    color: rgba(22, 24, 35, 0.34);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+
+    &:hover > svg {
+        fill: var(--text-color);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
 }
