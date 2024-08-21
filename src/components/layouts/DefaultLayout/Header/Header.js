@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 
@@ -10,13 +11,21 @@ import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
 
 function Header() {
+    const [searchResult, setSearchResult] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3]);
+        }, 3000);
+    });
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="TikTok logo" />
                 <Tippy
                     interactive
-                    visible={true}
+                    visible={searchResult.length > 0}
                     render={(attrs) => (
                         <div
                             className={cx('search-result')}
